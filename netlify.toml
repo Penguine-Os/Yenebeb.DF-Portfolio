@@ -1,0 +1,8 @@
+[build]
+publish = "dist/yenebeb.df-portfolio"
+command = "ng build"
+functions = "./netlify/functions"
+[[redirects]]
+from = "/*"
+to =  "/index.html"
+status = 200
