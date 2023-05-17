@@ -6,3 +6,10 @@ functions = "./netlify/functions"
 from = "/*"
 to =  "/index.html"
 status = 200
+[dev]
+port = 8000
+[[headers]]
+# Define which paths this specific [[headers]] block will cover.
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
