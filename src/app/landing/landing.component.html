@@ -1,1 +1,3 @@
-<p>landing works!</p>
+<ul>
+  <li *ngFor="let repository of  githubService.getRepos() | async" >{{repository.name}} </li>
+</ul>
