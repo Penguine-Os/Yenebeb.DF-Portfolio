@@ -1,6 +1,6 @@
 export interface Email {
-  to: string,
-  from: string,
+  to: string | undefined,
+  from: string | undefined,
   subject: string,
   text: string,
   html: string,

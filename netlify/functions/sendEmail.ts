@@ -15,7 +15,11 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify(response),
     }
   }
-    const requestBody : Email = JSON.parse(event.body!);
+  const {EMAIL_ADDRESS} = process.env;
+  const requestBody: Email = JSON.parse(event.body!);
+  requestBody.from = EMAIL_ADDRESS
+  requestBody.to = EMAIL_ADDRESS
+
   let {SENDGRID_API_KEY} = process.env;
   sgMail.setApiKey(SENDGRID_API_KEY)
 
@@ -25,7 +29,7 @@ export const handler: Handler = async (event, context) => {
 
     const result: ResultObject = {
       code: successResult.statusCode,
-      message: "Email Sent Successfully",
+      message: 'Email Sent Successfully',
     };
 
     return {
@@ -38,7 +42,6 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify(error),
     };
   }
-
 
 
 }
