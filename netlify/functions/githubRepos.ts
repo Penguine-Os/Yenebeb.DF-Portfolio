@@ -1,6 +1,7 @@
 import { Handler } from '@netlify/functions'
 import axios from 'axios';
 import {Repository} from '../../Models/Repository';
+import corsHeaders from '../corsHelpers/corsHeaders'
 require('dotenv').config()
 
 export const handler: Handler = async (event, context) => {
@@ -25,11 +26,13 @@ export const handler: Handler = async (event, context) => {
     return {
       statusCode: 200,
       body: JSON.stringify(repos),
+      headers: corsHeaders,
     };
   } catch (error) {
     return {
       statusCode: 500,
       body: JSON.stringify(error),
+      headers: corsHeaders,
     };
   }
 

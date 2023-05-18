@@ -3,6 +3,7 @@ import {ClientResponse} from '@sendgrid/mail';
 import {Email} from '../../Models/Email';
 import {ResultObject} from '../../Models/SendGrid/ResultObject';
 import {SuccessObject} from '../../Models/SendGrid/SuccessObject';
+import corsHeaders from '../corsHelpers/corsHeaders'
 
 const sgMail = require('@sendgrid/mail')
 require('dotenv').config()
@@ -35,11 +36,13 @@ export const handler: Handler = async (event, context) => {
     return {
       statusCode: result.code,
       body: result.message,
+      headers: corsHeaders,
     };
   } catch (error: any) {
     return {
       statusCode: 500,
       body: JSON.stringify(error),
+      headers: corsHeaders,
     };
   }
 
