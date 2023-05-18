@@ -9,11 +9,22 @@ const sgMail = require('@sendgrid/mail')
 require('dotenv').config()
 
 export const handler: Handler = async (event, context) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        ...corsHeaders,
+        'Allow': 'OPTIONS, POST'
+      }
+    }
+  }
+
   if (event.httpMethod !== 'POST') {
     const response = {message: `${event.httpMethod} method not supported`}
     return {
       statusCode: 400,
       body: JSON.stringify(response),
+      headers: corsHeaders,
     }
   }
   const {EMAIL_ADDRESS} = process.env;

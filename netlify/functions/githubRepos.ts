@@ -5,6 +5,15 @@ import corsHeaders from '../corsHelpers/corsHeaders'
 require('dotenv').config()
 
 export const handler: Handler = async (event, context) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        ...corsHeaders,
+        'Allow': 'OPTIONS, POST'
+      }
+    }
+  }
 
   try{
     const response = await Get('https://api.github.com/user/repos?per_page=100');
