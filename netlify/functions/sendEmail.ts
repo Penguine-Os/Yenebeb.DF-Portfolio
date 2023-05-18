@@ -14,7 +14,8 @@ export const handler: Handler = async (event, context) => {
       statusCode: 200,
       headers: {
         ...corsHeaders,
-        'Allow': 'OPTIONS, POST'
+        'Allow': 'OPTIONS, POST',
+        'Access-Control-Allow-Methods': 'OPTIONS, POST'
       }
     }
   }
